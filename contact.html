@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        /* Message de retour (succès / erreur) */
+        .form-message {
+            opacity: 0;
+            transform: translateY(10px);
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-message.success {
+            color: #4CAF50; /* Vert */
+        }
+
+        .form-message.error {
+            color: #E53935; /* Rouge */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Menu burger -->
+    <div class="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav><button id="theme-toggle">🌙</button>
+        <a href="index.html" class="nav-logo">
+            <img src="img/logo.webp" alt="logo"></a>
+
+        <a href="index.html">Accueil</a>
+        <a href="presentation.html">Présentation</a>
+        <a href="competences.html">Compétences</a>
+        <a href="projets.html">Projets</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Mode sombre -->
+    <button id="theme-toggle">🌙</button>
+</header>
+
+<section class="content fade">
+    <h1>Me contacter ✍🏼</h1>
+
+    <form class="contact-form"
+          action="https://formspree.io/f/mdkrrqwg"
+          method="POST">
+
+        <input type="text" name="name" placeholder="Nom" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Message..." required></textarea>
+
+        <button type="submit">Envoyer</button>
+
+        <!-- Message dynamique -->
+        <div id="form-message" class="form-message"></div>
+    </form>
+</section>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<!-- Animation + gestion du formulaire -->
+<script>
+const form = document.querySelector(".contact-form");
+const msgBox = document.getElementById("form-message");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msgBox.classList.remove("success", "error");
+
+    const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+    });
+
+    if (response.ok) {
+        msgBox.textContent = "Merci ! Votre message a bien été envoyé ✨";
+        msgBox.classList.add("success");
+        form.reset();
+    } else {
+        msgBox.textContent = "Erreur lors de l’envoi. Veuillez réessayer.";
+        msgBox.classList.add("error");
+    }
+
+    // Animation GSAP du message
+    gsap.fromTo(msgBox,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+    );
+});
+</script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

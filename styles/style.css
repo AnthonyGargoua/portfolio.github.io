@@ -1,0 +1,590 @@
+/* ===========================
+    PALETTE DE COULEURS
+=========================== */
+:root {
+    --bg: #f4efe6;
+    --text: #333;
+    --accent: #c9a227;    /* OR ÉLÉGANT */
+    --white: #fff;
+    --card: #fffaf1;
+    --shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* ===========================
+         GLOBAL
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ===========================
+         NAVIGATION
+=========================== */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background: var(--card);
+    border-bottom: 2px solid var(--accent);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--text);
+    position: relative;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+
+nav a.active {
+    color: var(--accent);
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ===========================
+          SECTIONS
+=========================== */
+.content, .hero {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+/* ===========================
+          HERO (Accueil)
+=========================== */
+.hero {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-family: poppins;
+}
+
+.hero p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-family: poppins;
+}
+
+/* ===========================
+          CARDS (Présentation)
+=========================== */
+.cards-container {
+    margin-top: 30px;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: 0 4px 15px var(--shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+/* Texte visible par-dessus */
+.card span {
+    position: relative;
+    z-index: 3;
+    font-size: 1.1rem;
+}
+
+/* Image cachée qui apparaît au hover */
+.card .hover-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.2);
+    transition: 0.4s;
+}
+
+/* Apparition de la photo au survol */
+.card:hover .hover-img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Assombrir légèrement le texte pour visibilité */
+.card:hover span {
+    color: white;
+    text-shadow: 0 0 10px black;
+}
+
+/* ===========================
+       LISTE COMPÉTENCES
+=========================== */
+.skills {
+    list-style: none;
+    margin-top: 20px;
+    line-height: 2;
+    font-size: 1.1rem;
+}
+
+/* ===========================
+        PROJETS
+=========================== */
+
+.gallery {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.gallery img {
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+/* ===========================
+        FORMULAIRE CONTACT
+=========================== */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+input, textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d3c7b3;
+    background: var(--white);
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--accent);
+}
+
+button {
+    padding: 12px;
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* ===========================
+       RESPONSIVE MOBILE
+=========================== */
+@media (max-width: 768px) {
+
+    /* MENU */
+    nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    /* TITRES */
+    .title {
+        font-size: 1.7rem;
+        text-align: center;
+        font-family: poppins;
+    }
+
+    .subtitle {
+        text-align: center;
+    }
+
+    /* HERO */
+    .hero h1 {
+        font-size: 2rem;
+        font-family: poppins;
+    }
+
+    /* CARDS */
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 250px;
+        height: 250px;
+    }
+
+    /* GALERIE */
+    .gallery {
+        justify-content: center;
+    }
+
+    .gallery img {
+        width: 90%;
+    }
+}
+
+/* ===========================
+       PETIT MOBILE
+=========================== */
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero {
+        margin-top: 40px;
+    }
+
+    .card {
+        width: 220px;
+        height: 220px;
+    }
+}
+/* ----- INTRO LOGO ----- */
+#intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#intro-logo {
+    width: 180px;
+    opacity: 0;
+}
+
+/* ----- NAVIGATION ----- */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+nav a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a.active {
+    color: #0077ff;
+}
+
+/* ----- HERO ----- */
+.hero {
+    text-align: center;
+    padding: 120px 30px;
+}
+
+.fade {
+    opacity: 0;
+}
+
+/* ----- BIO SECTION ----- */
+.bio {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.bio-text {
+    flex: 2;
+}
+
+.bio-text h2 {
+    margin-bottom: 20px;
+}
+
+.bio-text p {
+    line-height: 1.7;
+}
+
+.bio-photo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.bio-photo img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+/* ----- RESPONSIVE ----- */
+@media(max-width: 900px) {
+    .bio {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .bio-photo img {
+        max-width: 250px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+@media(max-width: 500px) {
+    .hero {
+        padding: 80px 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}
+/* ----- THEME TOGGLE ----- */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.2);
+}
+
+/* ----- MODE SOMBRE ----- */
+.dark-theme {
+    background-color: #111;
+    color: #f1f1f1;
+}
+
+.dark-theme nav a {
+    color: #f1f1f1;
+}
+
+.dark-theme nav a.active {
+    color: #4a9eff;
+}
+
+.dark-theme .hero {
+    color: #eee;
+}
+
+.dark-theme .bio-text p {
+    color: #ddd;
+}
+
+.dark-theme #intro {
+    background: #000;
+}
+/* Menu burger */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.burger span {
+    width: 28px;
+    height: 3px;
+    background: #000;
+    transition: 0.3s;
+}
+
+/* Transformation en croix quand actif */
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px,5px);
+}
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px,-5px);
+}
+
+/* Nav mobile */
+@media (max-width: 768px) {
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 80px 20px;
+        gap: 20px;
+        transition: 0.4s ease;
+        z-index: 999;
+    }
+
+    nav.active {
+        left: 0;
+    }
+
+    .burger {
+        display: flex;
+        z-index: 1001;
+    }
+
+    #theme-toggle {
+        right: 20px;
+        top: 20px;
+        z-index: 1000;
+    }
+    .nav-logo {
+    position: absolute;
+    left: 60px;
+    top: 18px;
+    z-index: 1000;
+}
+}
+
+/* Mode sombre menu burger */
+.dark-theme nav {
+    background: #111;
+}
+.dark-theme .burger span {
+    background: #fff;
+}
+/* Logo dans la navigation */
+.nav-logo img {
+    width: 40px;      /* taille du logo */
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.nav-logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Pour que la nav reste propre en version mobile */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+}
+
+/* ----- Section sites web ----- */
+.websites {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.site-card {
+    background: var(--card-bg, #f5f5f5);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-align: center;
+}
+
+.site-card a {
+    text-decoration: none;
+    color: var(--text, #333);
+}
+
+.site-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.25s ease;
+}
+
+/* Hover animation */
+.site-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.site-card:hover img {
+    transform: scale(1.03);
+}
+
+.site-card h3 {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
